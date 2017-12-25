@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Nuits.Interception;
 
 namespace InterceptionApp.Models
@@ -8,8 +9,12 @@ namespace InterceptionApp.Models
     public class Calculator
     {
         [Intercept(typeof(LoggingInterceptor))]
-        public int Add(int left, int right)
+        public async Task<int> Add(int left, int right)
         {
+            using (var transactionContext = new TransactionContext())
+            {
+                await transactionContext.BeginTransaction();
+            }
             return left + right;
         }
     }

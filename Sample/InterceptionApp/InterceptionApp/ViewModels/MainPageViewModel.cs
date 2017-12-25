@@ -38,9 +38,9 @@ namespace InterceptionApp.ViewModels
 
         public ICommand AddCommand => new Command(Add);
 
-        private void Add()
+        private async void Add()
         {
-            Result = _calculator.Add(Value1, Value2);
+            Result = await _calculator.Add(Value1, Value2);
         }
 
         #region INotifyPropertyChanged

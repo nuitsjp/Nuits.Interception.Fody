@@ -26,6 +26,8 @@ namespace InterceptionApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLStorage.Resource.String.ApplicationName = global::InterceptionApp.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::InterceptionApp.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::InterceptionApp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -3624,6 +3626,12 @@ namespace InterceptionApp.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f09003f
+			public const int ApplicationName = 2131296319;
+			
+			// aapt resource value: 0x7f09003e
+			public const int Hello = 2131296318;
 			
 			// aapt resource value: 0x7f090015
 			public const int abc_action_bar_home_description = 2131296277;

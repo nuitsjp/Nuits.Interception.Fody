@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Calculator.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Calculator.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Nuits.Interception.Fody" Version="0.0.13" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
   </ItemGroup>
 
 </Project>

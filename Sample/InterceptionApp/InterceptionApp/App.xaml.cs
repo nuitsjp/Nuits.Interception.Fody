@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-
+using System.Threading.Tasks;
+using InterceptionApp.Models;
+using PCLStorage;
 using Xamarin.Forms;
 
 namespace InterceptionApp
 {
 	public partial class App : Application
 	{
-		public App ()
+        public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new Views.MainPage();
+            MainPage = new Views.MainPage();
 		}
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
