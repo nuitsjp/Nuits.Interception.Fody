@@ -46,10 +46,11 @@ namespace Nuits.Interception.Fody
             innerInvoker.Fields.Add(parentField);
             result.ParentTypeFieldDefinition = parentField;
 
-            foreach (var (parameter, index) in targetMethod.Parameters.Select((parameter, index) => (parameter, index)))
+            for (int i = 0; i < targetMethod.Parameters.Count; i++)
             {
+                var parameter = targetMethod.Parameters[i];
                 var parameterFieldDefinition =
-                    new FieldDefinition($"Value{index + 1}", FieldAttributes.Assembly, parameter.ParameterType);
+                    new FieldDefinition($"Value{i + 1}", FieldAttributes.Assembly, parameter.ParameterType);
                 innerInvoker.Fields.Add(parameterFieldDefinition);
                 result.ParameterFieldDefinisions.Add(parameterFieldDefinition);
             }
@@ -64,13 +65,14 @@ namespace Nuits.Interception.Fody
             getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Ldc_I4, targetMethod.Parameters.Count));
             getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Newarr, moduleDefinition.TypeSystem.Object));
 
-            foreach (var (fieldDefinition, index) in result.ParameterFieldDefinisions.Select((fieldDefinition, index) => (fieldDefinition, index)))
+            for (int i = 0; i < result.ParameterFieldDefinisions.Count; i++)
             {
+                var fieldDefinition = result.ParameterFieldDefinisions[i];
                 getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Dup));
-                getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Ldc_I4, index));
+                getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Ldc_I4, i));
                 getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
                 getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, fieldDefinition));
-                if(fieldDefinition.FieldType.IsPrimitive)
+                if (fieldDefinition.FieldType.IsPrimitive)
                     getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Box, fieldDefinition.FieldType));
                 getArguments.Body.Instructions.Add(Instruction.Create(OpCodes.Stelem_Ref));
             }

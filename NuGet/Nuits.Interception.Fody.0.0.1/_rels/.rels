@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/Nuits.Interception.Fody.nuspec" Id="Rcc5b61412d8744ee" />
-  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/55b0b46e83bc470188ac3b93396a1684.psmdcp" Id="R714ed7dbc7804506" />
-</Relationships>

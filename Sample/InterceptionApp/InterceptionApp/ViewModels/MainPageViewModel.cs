@@ -11,7 +11,7 @@ namespace InterceptionApp.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        private readonly Calculator _calculator;
+        private readonly Calculator _calculator = new Calculator();
         private int _value1 = 1;
 
         public int Value1
@@ -37,11 +37,6 @@ namespace InterceptionApp.ViewModels
         }
 
         public ICommand AddCommand => new Command(Add);
-
-        public MainPageViewModel(Calculator calculator)
-        {
-            _calculator = calculator;
-        }
 
         private void Add()
         {

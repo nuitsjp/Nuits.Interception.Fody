@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D7A1ECF-F79C-4CFE-836F-A0DC630CDA37}</ProjectGuid>
+    <ProjectGuid>{054F805B-F904-4C54-A4B4-CFFC1982BB47}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>InterceptionApp.Droid</RootNamespace>
     <AssemblyName>InterceptionApp.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -82,7 +82,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InterceptionApp\InterceptionApp.csproj">
-      <Project>{DE036732-398D-437A-858D-F99D3B8CA8B6}</Project>
+      <Project>{21121FE2-DC73-43AA-9E29-12D6DC41AE58}</Project>
       <Name>InterceptionApp</Name>
     </ProjectReference>
   </ItemGroup>

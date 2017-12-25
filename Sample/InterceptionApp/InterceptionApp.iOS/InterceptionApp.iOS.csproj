@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6F536283-FB44-4225-8A2A-0174D6041F61}</ProjectGuid>
+    <ProjectGuid>{8CA39AA7-2353-4B38-954E-1DE6B14D7442}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>InterceptionApp.iOS</RootNamespace>
@@ -124,7 +124,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\InterceptionApp\InterceptionApp.csproj">
-      <Project>{DE036732-398D-437A-858D-F99D3B8CA8B6}</Project>
+      <Project>{21121FE2-DC73-43AA-9E29-12D6DC41AE58}</Project>
       <Name>InterceptionApp</Name>
     </ProjectReference>
   </ItemGroup>

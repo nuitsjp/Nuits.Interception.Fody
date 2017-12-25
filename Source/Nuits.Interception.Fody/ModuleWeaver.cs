@@ -18,7 +18,7 @@ public class ModuleWeaver
             ModuleDefinition.Types.SelectMany(
                 x => x.Methods.Where(
                     method => method.CustomAttributes.Any(
-                        attribute => attribute.AttributeType.FullName == typeof(InterceptAttribute).FullName))).Distinct().ToList();
+                        attribute => attribute.AttributeType.FullName.EndsWith("InterceptAttribute")))).Distinct().ToList();
         foreach (var methodDefinition in methods)
         {
             var originalName = methodDefinition.Name;
@@ -60,11 +60,12 @@ public class ModuleWeaver
 
         targetMethod.Body.Instructions.Add(Instruction.Create(OpCodes.Ldtoken, originalMethod));
         var getMethodFromHandle =
-            typeof(MethodBase).GetMethod("GetMethodFromHandle", new[] { typeof(RuntimeMethodHandle) });
+            typeof(MethodBase).GetTypeInfo().GetDeclaredMethods("GetMethodFromHandle")
+                .Single(x => x.GetParameters().Length == 1 && x.GetParameters().Count(y => y.ParameterType.Name == "RuntimeMethodHandle") == 1);
         targetMethod.Body.Instructions.Add(Instruction.Create(OpCodes.Call, ModuleDefinition.ImportReference(getMethodFromHandle)));
 
         // InterceptAttribute interceptorAttribute = ((MemberInfo)methodInfo).GetCustomAttribute<InterceptAttribute>();
-        var getCustomAttribute = typeof(CustomAttributeExtensions).GetMethods()
+        var getCustomAttribute = typeof(CustomAttributeExtensions).GetTypeInfo().DeclaredMethods
             .Where(x => x.Name == "GetCustomAttribute" && x.GetGenericArguments().Length == 1)
             .Single(x =>
             {
@@ -74,7 +75,7 @@ public class ModuleWeaver
         targetMethod.Body.Instructions.Add(Instruction.Create(OpCodes.Call, ModuleDefinition.ImportReference(getCustomAttribute)));
 
         // interceptorAttribute.InterceptorTypes
-        var get_InterceptorTypes = typeof(InterceptAttribute).GetTypeInfo().GetMethod("get_InterceptorTypes");
+        var get_InterceptorTypes = typeof(InterceptAttribute).GetTypeInfo().GetDeclaredMethod("get_InterceptorTypes");
         targetMethod.Body.Instructions.Add(Instruction.Create(OpCodes.Call, ModuleDefinition.ImportReference(get_InterceptorTypes)));
 
         // new AddInvocation
